@@ -1,9 +1,10 @@
-import Post from "../entities/Post";
-import Image from "../entities/Image";
-import { Text } from "../entities/Text";
-import Video from "../entities/Video";
 
-const BITBOOK_API_BASE_URL = 'http://bitbookapi.azurewebsites.net/api';
+import Image from "../entities/Image";
+import Text from "../entities/Text";
+import Video from "../entities/Video";
+import BITBOOK_API_BASE_URL from '../shared/constants';
+
+
 
 const fetchPosts = () => {
     const post = "/posts"

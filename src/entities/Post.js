@@ -1,8 +1,9 @@
 class Post {
-    constructor(id, userId, type) {
+    constructor(id, userId, type, commentsNum) {
         this.id = id;
         this.userId = userId;
-        this.type = type
+        this.type = type;
+        this.commentsNum = commentsNum;
     }
 
     isImage() {

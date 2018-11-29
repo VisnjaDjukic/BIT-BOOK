@@ -2,38 +2,42 @@ import React, { Component } from 'react';
 import { VideoPost } from './VideoPost';
 import { ImagePost } from './ImagePost';
 import { TextPost } from './TextPost';
+import '../Feed/PostItem.css'
 
 
 class PostItem extends Component {
 
     renderPost = (post) => {
+
         if (post.isImage()) {
-            return <ImagePost src={post.imageUrl} />
+            return <ImagePost type={post.type} src={post.imageUrl} />
         } else if (post.isVideo()) {
-            return <VideoPost url={post.videoUrl} />
+            return <VideoPost type={post.type} url={post.videoUrl} />
         } else {
-            return <TextPost />
+            return <TextPost type={post.type} />
         }
     }
 
     render() {
 
-        const { post } = this.props
+        const { post } = this.props;
+        const { commentsNum, type } = post;
+
 
         if (!post) {
-            return <h1>Nada here</h1>
+            return <h1>...</h1>
         }
 
         return (
             <div className="row">
-                <div className="col s12 m12">
-                    <div className="card">
+                <div className="col s12 m12" >
+                    <div className="card" >
                         <div className="card-content">
                             {this.renderPost(post)}
                         </div>
                         <div className="card-action">
-                            <span> Post</span>
-                            <span>Comments</span>
+                            <span>{type + " post"}</span>
+                            <span>{commentsNum + " comments"}</span>
                         </div>
                     </div>
                 </div>
