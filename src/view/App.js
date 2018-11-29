@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from 'react';
+
 import { Header } from './common/Header';
-import { Footer } from './common/Footer'
+import { Footer } from './common/Footer';
+import { Feed } from './pages/Feed/FeedPage';
+
 
 class App extends Component {
   render() {
@@ -8,7 +11,9 @@ class App extends Component {
       <Fragment>
         <Header />
         <main>
-          <p> Nothing in feed... </p>
+          <Feed />
+
+          {/* <p> Nothing in feed... </p> */}
 
         </main>
         <Footer />
