@@ -12,8 +12,7 @@ class NewPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showButtons: false,
-            inputData: ""
+            showButtons: false
         }
     }
 
@@ -29,22 +28,15 @@ class NewPost extends Component {
         }));
     }
 
-    handleSubmit = () => {
-        this.setState((state) => ({
-            inputData: "mirjana"
-        }));
-
-    }
-
     render() {
 
         return (
             <Fragment>
                 <a className="btn-floating btn-large waves-effect waves-light orange" onClick={this.handleClick} ><i className="material-icons">add_circle</i></a>
 
-                <NewTextPost onClick={this.handleSubmit} />
-                <NewImagePost onClick={this.handleSubmit} />
-                <NewVideoPost onClick={this.handleSubmit} />
+                <NewTextPost />
+                <NewImagePost />
+                <NewVideoPost />
                 {
                     this.state.showButtons
                         ? (
