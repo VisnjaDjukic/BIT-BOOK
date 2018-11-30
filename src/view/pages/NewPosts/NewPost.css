@@ -2,21 +2,25 @@
     position: absolute;
     bottom: 100px;
     right: 50px;
+    position: fixed; 
 }
 .btn-floating.btn-large.waves-effect.waves-light.red{
     position: absolute;
     bottom: 170px;
     right: 50px;
+    position: fixed; 
 }
  .btn-floating.btn-large.waves-effect.waves-light.green{
     position: absolute;
     bottom: 240px;
     right: 50px;
+    position: fixed; 
 }
 .btn-floating.btn-large.waves-effect.waves-light{
     position: absolute;
     bottom: 310px;
     right: 50px;
+    position: fixed; 
 }
 .modal-close.btn-flat.orange {
   color: white;

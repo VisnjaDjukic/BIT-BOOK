@@ -7,6 +7,8 @@ import { NewImagePost } from "./NewImagePost"
 import { NewTextPost } from "./NewTextPost"
 import { NewVideoPost } from "./NewVideoPost"
 
+import { postData } from "../../../services/postService"
+
 class NewPost extends Component {
 
     constructor(props) {
@@ -28,15 +30,25 @@ class NewPost extends Component {
         }));
     }
 
+    handleSubmit = (value, type) => {
+        postData(value, type)
+            .then((response) => {
+                if (response === true) {
+                    this.props.onPostCreate();
+                }
+            })
+
+    }
+
     render() {
 
         return (
             <Fragment>
                 <a className="btn-floating btn-large waves-effect waves-light orange" onClick={this.handleClick} ><i className="material-icons">add_circle</i></a>
 
-                <NewTextPost />
-                <NewImagePost />
-                <NewVideoPost />
+                <NewTextPost createPost={this.handleSubmit} />
+                <NewImagePost createPost={this.handleSubmit} />
+                <NewVideoPost createPost={this.handleSubmit} />
                 {
                     this.state.showButtons
                         ? (
