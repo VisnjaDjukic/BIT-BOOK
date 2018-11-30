@@ -22,19 +22,26 @@ const fetchPosts = () => {
             return response.json()
         })
         .then(allPosts => {
-            const posts = allPosts.map(post => {
-                switch (post.type) {
-                    case "image":
-                        return new Image(post)
-                    case "video":
-                        return new Video(post)
-                    case "text":
-                        return new Text(post)
-                    default:
-                        throw new Error("Invalid type")
-                }
+            const posts = allPosts
+                .filter((post) => {
+                    if (post.videoUrl) {
+                        return post.videoUrl.includes('https://www.youtube.com/embed')
+                    }
+                    return true
+                })
+                .map(post => {
+                    switch (post.type) {
+                        case "image":
+                            return new Image(post)
+                        case "video":
+                            return new Video(post)
+                        case "text":
+                            return new Text(post)
+                        default:
+                            throw new Error("Invalid type")
+                    }
 
-            })
+                })
             return posts;
         })
 }

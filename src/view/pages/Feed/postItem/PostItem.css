@@ -2,4 +2,7 @@
     display: flex;
     justify-content: space-between;
 }
+.videoComments {
+    text-transform: lowercase;
+}
 

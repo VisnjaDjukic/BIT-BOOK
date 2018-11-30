@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 import * as postsService from '../../../services/postService';
 
-import { PostItem } from './PostItem';
+import { PostItem } from './postItem/PostItem';
 
-class Feed extends Component {
+class FeedPage extends Component {
 
     constructor(props) {
         super(props)
@@ -19,7 +19,7 @@ class Feed extends Component {
     fetchPosts = () => {
         postsService.fetchPosts()
             .then(myPosts => {
-                console.log(myPosts)
+                // console.log(myPosts)
                 this.setState({ posts: myPosts })
             })
     }
@@ -35,9 +35,9 @@ class Feed extends Component {
         return (
             <div className="container">
                 {this.renderItems(this.state.posts)}
-            </div>
+            </div >
         )
     }
 }
 
-export { Feed };
+export { FeedPage };
