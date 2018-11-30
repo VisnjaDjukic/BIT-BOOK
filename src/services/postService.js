@@ -27,7 +27,7 @@ const fetchPosts = () => {
                     if (post.videoUrl) {
                         return post.videoUrl.includes('https://www.youtube.com/embed')
                     }
-                    return true
+                    return true;
                 })
                 .map(post => {
                     switch (post.type) {
