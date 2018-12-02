@@ -1,4 +1,5 @@
 import BITBOOK_API_BASE_URL from '../shared/constants';
+import Comment from '../entities/Comment';
 
 
 const fetchComments = (id) => {
@@ -16,10 +17,7 @@ const fetchComments = (id) => {
     })
         .then(response => response.json())
         .then(data => {
-            return data;
-
+            return new Comment (data.body, data.id);
         })
-
-
 }
 export { fetchComments }

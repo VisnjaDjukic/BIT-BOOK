@@ -49,7 +49,8 @@ class PostItem extends Component {
                         <div className="card-action">
                             <span>{type + " post"}</span>
                             {/* /posts/image/12 */}
-                            <Link to={`/posts/${post.type}/${post.id}`}><span className="videoComments">{displayComments}</span></Link>
+                            <Link to={`/posts/${post.type}/${post.id}`}>
+                            <span className="videoComments">{displayComments}</span></Link>
                         </div>
                     </div>
                 </div>

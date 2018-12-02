@@ -12,11 +12,11 @@ class CommentList extends Component {
 
     componentDidMount() {
 
-        const { postId } = this.props
+        const { postId } = this.props;
 
         commentService.fetchComments(postId)
             .then(myComments => {
-                console.log(myComments)
+                // console.log(myComments)
                 this.setState({ comments: myComments })
             })
     }
@@ -24,16 +24,30 @@ class CommentList extends Component {
     render() {
 
         const { comments } = this.state;
-
+        
         if (!comments.length) {
-            return <h2>No comments</h2>
+            const isComment = "No comment";
+            return (
+                <div className="row">
+                    <div className="col s12 m12" >
+                        <div className="card" >
+                            <div className="card-content">
+                                {isComment}
+                            </div>
+                            <div className="card-action">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+            )
+        } else {
+
+            const commentsList = comments.map(comment => {
+                return <CommentList comment={comment} />
+            })
+            return commentsList;
         }
-
-        const commentsList = comments.map(comment => {
-            return <CommentList comment={comment} />
-        })
-
-        return commentsList
     }
 }
 export { CommentList }
