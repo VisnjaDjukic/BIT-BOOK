@@ -1,46 +1,50 @@
 import React, { Component } from 'react';
 
-import * as commentService from '../../../services/commentService';
 import { CommentList } from './CommentList';
-
-
-
-
+import * as postService from '../../../services/postService';
+import { ImagePost } from '../Feed/ImagePost';
 
 class PostPage extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
+            post: null,
             comments: []
         }
     }
+
     componentDidMount() {
         this.fetchComments()
     }
 
     fetchComments = () => {
-        const postId = this.props.match.params.id;
+        const { postId, postType } = this.props.match.params;
 
-        commentService.fetchComments(postId)
-            .then(myComments => {
-                console.log(myComments)
-                this.setState({ comments: myComments })
+        postService.fetchSinglePost(postId, postType)
+            .then(post => {
+                this.setState({
+                    post
+                })
             })
     }
 
     render() {
-        const { comments } = this.state;
+        const { post } = this.state;
+
+        if (!post) {
+            return <p>Loading...</p>
+        }
 
         return (
-
             <div className="container">
-                {comments.map(comment => {
-                    return <CommentList comment={comment} />
-                })}
+
+                {/* POST image, video , text */}
+                {/* <ImagePost src={post.imageUrl} /> */}
+                {/* Comments */}
+                <CommentList postId={post.id} />
             </div>
         )
-        // this.props.match.params.id;
     }
 }
 

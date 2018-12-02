@@ -14,7 +14,7 @@ class App extends Component {
         <Header />
         <main>
           <Switch>
-            <Route exact path="/posts/:id" component={PostPage} />
+            <Route exact path="/posts/:postType/:postId" component={PostPage} />
             <Route exact path="/" component={FeedPage} />
             {/* <p> Nothing in feed... </p> */}
           </Switch>

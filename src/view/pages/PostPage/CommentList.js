@@ -1,23 +1,39 @@
 import React, { Component } from 'react';
+import * as commentService from '../../../services/commentService';
 
+class CommentList extends Component {
+    constructor(props) {
+        super(props)
 
-const CommentList = (props) => {
-    const { comment } = props;
-    const { body } = comment;
-    return (
-        <div className="row">
-            <div className="col s12 m12" >
-                <div className="card" >
-                    <div className="card-content">
-                        {body}
-                    </div>
-                    <div className="card-action">
+        this.state = {
+            comments: []
+        }
+    }
 
-                    </div>
-                </div>
-            </div>
-        </div>
+    componentDidMount() {
 
-    )
+        const { postId } = this.props
+
+        commentService.fetchComments(postId)
+            .then(myComments => {
+                console.log(myComments)
+                this.setState({ comments: myComments })
+            })
+    }
+
+    render() {
+
+        const { comments } = this.state;
+
+        if (!comments.length) {
+            return <h2>No comments</h2>
+        }
+
+        const commentsList = comments.map(comment => {
+            return <CommentList comment={comment} />
+        })
+
+        return commentsList
+    }
 }
 export { CommentList }
