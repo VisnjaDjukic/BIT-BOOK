@@ -19,7 +19,7 @@ const fetchUsers = () => {
         .then((userData) => {
             // console.log(userData)
             const usersList = userData.map(user => {
-                return new User(user.userId, user.name, user.aboutShort, user.lastPostDate, user.image)
+                return new User(user.userId, user.name, user.aboutShort, user.lastPostDate, user.img)
             })
             return usersList;
 
@@ -28,9 +28,9 @@ const fetchUsers = () => {
 
 const fetchMyProfile = () => {
     const profile = "/profile"
-    const urlprof = BITBOOK_API_BASE_URL + `${profile}`
+    const url = BITBOOK_API_BASE_URL + `${profile}`
 
-    return fetch(urlprof, {
+    return fetch(url, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -42,8 +42,8 @@ const fetchMyProfile = () => {
             return response.json()
         })
         .then((user) => {
-            const { userId, name, aboutShort, postsCount, commentsCount } = user
-            return new User(userId, name, aboutShort, postsCount, commentsCount)
+            const {userId, name, aboutShort, avatarUrl, postsCount, commentsCount } = user
+            return new User(userId, name, aboutShort, avatarUrl, postsCount, commentsCount)
         })
 }
 
