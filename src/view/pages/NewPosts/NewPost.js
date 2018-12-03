@@ -18,6 +18,7 @@ class NewPost extends Component {
     }
 
     render() {
+        const { onPostTypeSelected } = this.props;
 
         return (
             <Fragment>
@@ -26,9 +27,9 @@ class NewPost extends Component {
                     this.state.showButtons
                         ? (
                             <div>
-                                <a className="btn-floating btn-large waves-effect waves-light red btn" onClick={this.props.newVideo}><i className="material-icons">videocam</i></a>
-                                <a className="btn-floating btn-large waves-effect waves-light green" onClick={this.props.newImage}><i className="material-icons">image</i></a>
-                                <a className="btn-floating btn-large waves-effect waves-light blue" onClick={this.props.newText}><i className="material-icons">edit</i></a>
+                                <a className="btn-floating btn-large waves-effect waves-light red btn" onClick={() => onPostTypeSelected('video')}> <i className="material-icons">videocam</i></a>
+                                <a className="btn-floating btn-large waves-effect waves-light green" onClick={() => onPostTypeSelected('image')}><i className="material-icons">image</i></a>
+                                <a className="btn-floating btn-large waves-effect waves-light blue" onClick={() => onPostTypeSelected('text')}><i className="material-icons">edit</i></a>
                             </div>
                         ) : null
                 }

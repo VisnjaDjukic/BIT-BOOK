@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Modal from 'react-modal';
 
 import { postData } from "../../../services/postService"
 
@@ -10,7 +9,6 @@ class ModalPostImage extends Component {
         this.state = {
             dataInput: "",
             error: ""
-            // postType:"text",
         }
     }
 
@@ -19,7 +17,7 @@ class ModalPostImage extends Component {
         if (reg.test(event.target.value)) {
             this.setState({
                 dataInput: event.target.value,
-                error:""
+                error: ""
             })
         } else {
             this.setState({
@@ -39,19 +37,16 @@ class ModalPostImage extends Component {
 
     render() {
         return (
-            <Modal
-                isOpen={this.props.imagePost}
-                contentLabel="Post new ImagePost" center>
-
+            <>
                 <h4>New Image Post</h4>
 
                 <input placeholder="Input text..." type="text" onChange={this.handleInput} className="validate" />
                 <p>{this.state.error}</p>
                 <div>
                     <button onClick={this.props.closeModal} className="btn orange" >Cancel</button>
-                    <button onClick={this.handleSubmit} className="btn orange" >Post</button>
+                    <button onClick={this.closeModal} className="btn orange" >Post</button>
                 </div>
-            </Modal>
+            </>
         );
     }
 }

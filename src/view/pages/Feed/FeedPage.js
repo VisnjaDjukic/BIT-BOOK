@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Modal from 'react-modal';
 
 import * as postsService from '../../../services/postService';
 
@@ -15,15 +16,14 @@ class FeedPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            isModalOpen: false,
+            postType: '',
             posts: [],
-            textPostModal: false,
-            imagePostModal: false,
-            videoPostModal: false
         }
     }
 
     componentDidMount() {
-        this.fetchPosts()
+        this.fetchPosts();
     }
 
     fetchPosts = () => {
@@ -40,73 +40,51 @@ class FeedPage extends Component {
         return postItems
     }
 
-    openModalText = () => {
+    closeModal = () => {
         this.setState({
-            textPostModal: true,
-         
-        });
-    }
-    openModalImage = () => {
-        this.setState({
-            imagePostModal: true,
-        });
-    }
-    openModalVideo = () => {
-        this.setState({
-            videoPostModal: true
-        });
+            isModalOpen: false
+        })
     }
 
-    closeModalText = () => {
-        this.setState({
-            textPostModal: false,
-        });
-    }
-    closeModalImage = () => {
-        this.setState({
-            imagePostModal: false,
-        });
-    }
-    closeModalVideo = () => {
-        this.setState({
-            videoPostModal: false
-        });
+    // updatePosts = () => {
+    //     postsService.fetchPosts()
+    //         .then((posts) => {
+    //             this.setState({
+    //                 posts,
+    //                 textPostModal: false,
+    //                 imagePostModal: false,
+    //                 videoPostModal: false
+    //             })
+    //         })
+    // }
+
+    renderCreationPostForm = () => {
+        if (this.state.postType === 'image') {
+            return <ModalPostImage closeModal={this.closeModal} />;
+        } else if (this.state.postType === 'video') {
+            return <ModalPostVideo />;
+        } else {
+            return <ModalPostText />;
+        }
     }
 
-    updatePosts = () => {
-        postsService.fetchPosts()
-            .then((posts) => {
-                this.setState({
-                    posts,
-                    textPostModal: false,
-                    imagePostModal: false,
-                    videoPostModal: false
-                })
-            })
+    showPostForm = (type) => {
+        this.setState({ postType: type, isModalOpen: true });
     }
 
     render() {
         return (
             <div className="container">
                 <NewPost
-                    newText={this.openModalText}
-                    newImage={this.openModalImage}
-                    newVideo={this.openModalVideo} />
-                <ModalPostText
-                    closeModal={this.closeModalText}
-                    textPost={this.state.textPostModal}
-                    updatePosts={this.updatePosts}
-                />
-                <ModalPostImage
-                    closeModal={this.closeModalImage}
-                    imagePost={this.state.imagePostModal}
-                    updatePosts={this.updatePosts}
-                />
-                <ModalPostVideo
-                    closeModal={this.closeModalVideo}
-                    videoPost={this.state.videoPostModal}
-                    updatePosts={this.updatePosts}
-                />
+                    onPostTypeSelected={this.showPostForm} />
+
+                <Modal
+                    isOpen={this.state.isModalOpen}
+                    contentLabel="Post new Post" center
+                >
+                    {this.renderCreationPostForm()}
+                </Modal>
+
                 {this.renderItems(this.state.posts)}
             </div >
         )
