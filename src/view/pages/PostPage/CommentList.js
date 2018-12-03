@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as commentService from '../../../services/commentService';
+import { CommentItem } from './CommentItem';
 
 class CommentList extends Component {
     constructor(props) {
@@ -24,7 +25,9 @@ class CommentList extends Component {
     render() {
 
         const { comments } = this.state;
-        
+
+        console.log("comments", comments);
+
         if (!comments.length) {
             const isComment = "No comment";
             return (
@@ -39,12 +42,11 @@ class CommentList extends Component {
                         </div>
                     </div>
                 </div>
-        
             )
         } else {
 
             const commentsList = comments.map(comment => {
-                return <CommentList comment={comment} />
+                return <CommentItem comment={comment} />
             })
             return commentsList;
         }

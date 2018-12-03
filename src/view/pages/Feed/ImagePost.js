@@ -3,7 +3,7 @@ import React from 'react';
 
 
 const ImagePost = (props) => {
-    const { src, postId, type } = props;
+    const { src } = props;
     return (
 
         <div className="card-content">

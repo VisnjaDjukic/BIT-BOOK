@@ -16,8 +16,11 @@ const fetchComments = (id) => {
         }
     })
         .then(response => response.json())
-        .then(data => {
-            return new Comment (data.body, data.id);
+        .then(commentsListData => {
+            console.log(commentsListData);
+            return commentsListData.map(({ body, id, authorName}) => {
+                return new Comment(body, id, authorName);
+            })
         })
 }
 export { fetchComments }
