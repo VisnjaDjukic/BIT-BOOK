@@ -7,6 +7,7 @@ import { Route, Switch } from 'react-router-dom';
 import { ImagePost } from './pages/Feed/ImagePost';
 import { VideoPost } from './pages/Feed/VideoPost';
 import { TextPost } from './pages/Feed/TextPost';
+import { MyUserProfile } from './pages/Profile/MyUserProfile';
 
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
         <Header />
         <main>
           <Switch>
+            < Route exact path="/profile" component={MyUserProfile} />
             < Route exact path="/imagePost" component={ImagePost} />
             < Route exact path="/videoPost" component={VideoPost} />
             < Route exact path="/textPost" component={TextPost} />
