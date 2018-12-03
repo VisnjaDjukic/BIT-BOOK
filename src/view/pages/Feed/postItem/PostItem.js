@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { VideoPost } from '../VideoPost';
 import { ImagePost } from '../ImagePost';
 import { TextPost } from '../TextPost';
@@ -9,7 +10,6 @@ import { Link } from 'react-router-dom';
 class PostItem extends Component {
 
     renderPost = (post) => {
-
         if (post.isImage()) {
             return <ImagePost type={post.type} src={post.imageUrl} />
         } else if (post.isVideo()) {
@@ -48,7 +48,9 @@ class PostItem extends Component {
                         </div>
                         <div className="card-action">
                             <span>{type + " post"}</span>
-                            <Link to="/"><span className="videoComments">{displayComments}</span></Link>
+                            {/* /posts/image/12 */}
+                            <Link to={`/posts/${post.type}/${post.id}`}>
+                            <span className="videoComments">{displayComments}</span></Link>
                         </div>
                     </div>
                 </div>

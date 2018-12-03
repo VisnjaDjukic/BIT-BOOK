@@ -4,7 +4,6 @@ const VideoPost = (props) => {
     const { url } = props;
     console.log(url);
 
-
     return (
         <div className="video-container">
             <iframe

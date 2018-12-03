@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <nav>
       <div className="nav-wrapper container">
-        <a className="brand-logo">BITbook</a>
+        <Link to="/" className="brand-logo">BITbook</Link>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li><Link to="/">Feed</Link></li>
           <li><Link to="/">People</Link></li>
