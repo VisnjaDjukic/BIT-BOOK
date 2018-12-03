@@ -8,6 +8,9 @@ class NewImagePost extends Component {
             dataInput: ""
         }
     }
+    openModal() {
+        this.setState({modalIsOpen: true});
+      }
 
     handleInput = (event) => {
         this.setState({
