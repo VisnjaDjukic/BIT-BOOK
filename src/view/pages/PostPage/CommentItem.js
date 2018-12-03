@@ -6,10 +6,10 @@ const CommentItem = (props) => {
     const { body, authorName } = comment;
     return (
 
-        <ul class="collection">
-            <li class="collection-item avatar">
-                <img src="http://marsrovermanipal.com/team-18/nopic.png" alt="" class="circle no_image" />
-                <p class="author_name_comments">{authorName}</p>
+        <ul className="collection">
+            <li className="collection-item avatar">
+                <img src="http://marsrovermanipal.com/team-18/nopic.png" alt="" className="circle no_image" />
+                <p className="author_name_comments">{authorName}</p>
                 <p>{body}<br />
 
                 </p>
