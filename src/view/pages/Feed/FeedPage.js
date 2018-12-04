@@ -11,7 +11,16 @@ import { ModalPostText } from '../NewPosts/ModalPostText'
 import { ModalPostImage } from '../NewPosts/ModalPostImage'
 import { ModalPostVideo } from '../NewPosts/ModalPostVideo'
 
-
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    }
+};
 
 class FeedPage extends Component {
     constructor(props) {
@@ -92,6 +101,7 @@ class FeedPage extends Component {
 
                 <Modal
                     isOpen={this.state.isModalOpen}
+                    style={customStyles}
                     contentLabel="Post new Post" center>
 
                     {this.renderCreationPostForm()}
