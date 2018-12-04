@@ -24,9 +24,8 @@ class ModalPostImage extends Component {
         }
     }
 
-    someFn = () => {
-        const value = this.state.dataInput
-        this.props.callbackFromParent(value);
+    onSubmitClick = (e) => {
+        this.props.handleSubmit(this.state.dataInput)
     }
 
     render() {
@@ -36,6 +35,10 @@ class ModalPostImage extends Component {
 
                 <input placeholder="Input text..." type="text" onChange={this.handleInput} className="validate" />
                 <p>{this.state.error}</p>
+                <div>
+                    <button onClick={this.props.closeModal} className="btn orange" >Cancel</button>
+                    <button onClick={this.onSubmitClick} className="btn orange" >Post</button>
+                </div>
             </Fragment>
         );
     }

@@ -56,16 +56,6 @@ class FeedPage extends Component {
             })
     }
 
-    renderCreationPostForm = () => {
-        if (this.state.postType === 'image') {
-            return <ModalPostImage />;
-        } else if (this.state.postType === 'video') {
-            return <ModalPostVideo />;
-        } else {
-            return <ModalPostText />;
-        }
-    }
-
     showPostForm = (type) => {
         this.setState({ postType: type, isModalOpen: true });
     }
@@ -79,7 +69,17 @@ class FeedPage extends Component {
     //         })
     // }
 
-    myCallBack = (dataFromChild) => {
+    renderCreationPostForm = () => {
+        if (this.state.postType === 'image') {
+            return <ModalPostImage />;
+        } else if (this.state.postType === 'video') {
+            return <ModalPostVideo />;
+        } else {
+            return <ModalPostText />;
+        }
+    }
+
+    handleSubmit = (dataFromChild) => {
         postService.postData(dataFromChild, this.state.postType)
             .then((response) => {
                 if (response === true) {
@@ -87,7 +87,6 @@ class FeedPage extends Component {
                 }
             })
     }
-
 
     render() {
         return (
@@ -97,13 +96,9 @@ class FeedPage extends Component {
 
                 <Modal
                     isOpen={this.state.isModalOpen}
-                    contentLabel="Post new Post" center
-                >
+                    contentLabel="Post new Post" center>
+
                     {this.renderCreationPostForm()}
-                    <div>
-                        <button onClick={this.closeModal} className="btn orange" >Cancel</button>
-                        <button onClick={this.callbackFromParent} callbackFromParent={this.myCallBack} className="btn orange" >Post</button>
-                    </div>
                 </Modal>
 
                 {this.renderItems(this.state.posts)}
