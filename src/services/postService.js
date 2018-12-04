@@ -1,10 +1,10 @@
-
 import Image from "../entities/Image";
 import Text from "../entities/Text";
 import Video from "../entities/Video";
 import BITBOOK_API_BASE_URL from '../shared/constants';
 
-export const fetchSinglePost = (postId, type) => {
+// const fetchPosts = () => {
+const fetchSinglePost = (postId, type) => {
 
     let postsEndpoint;
     switch (type) {
@@ -44,7 +44,7 @@ export const fetchSinglePost = (postId, type) => {
         })
 }
 
-export const fetchPosts = () => {
+const fetchPosts = () => {
     const post = "/posts"
     const url = BITBOOK_API_BASE_URL + `${post}`;
 
@@ -81,6 +81,39 @@ export const fetchPosts = () => {
 
                 })
             return posts;
+        });
+}
+// }
+
+const postData = (value, postType) => {
+    let url = BITBOOK_API_BASE_URL;
+    let data = {};
+
+    if (postType === 'imageUrl') {
+        url += '/ImagePosts';
+        data = { imageUrl: value };
+    } else if (postType === 'videoUrl') {
+        url += '/VideoPosts';
+        console.log(value)
+        data = { videoUrl: value };
+    } else {
+        url += '/TextPosts';
+        data = { text: value };
+    }
+
+    return fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Key": "bitbookdev",
+            "SessionId": "2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE",
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            return response.json()
         })
 }
+
+export { fetchSinglePost, fetchPosts, postData };
 // export { fetchPosts }

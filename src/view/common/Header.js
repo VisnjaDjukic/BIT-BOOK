@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <nav>
+    <nav className="orange">
+      <a className="brand-logo">BITbook</a>
       <div className="nav-wrapper container">
         <Link to="/" className="brand-logo">BITbook</Link>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
