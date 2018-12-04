@@ -37,20 +37,20 @@ class FeedPage extends Component {
 
 
     loadPosts() {
-        postsService.fetchPosts()
+        postService.fetchPosts()
 
-
+    }
     fetchPosts = () => {
         postService.fetchPosts()
-       .then(myPosts => {
+            .then(myPosts => {
                 this.setState({ posts: myPosts })
             })
 
     }
 
     componentDidMount() {
-        this.loadPosts();
-      this.fetchPosts();
+        this.loadPosts()
+        this.fetchPosts()
     }
 
     renderItems = (posts) => {
