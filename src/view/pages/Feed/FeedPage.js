@@ -103,7 +103,6 @@ class FeedPage extends Component {
 
         return (
             <div className="container">
-
                 {
                     posts.map(post =>
                         <PostItem key={post.id} post={post} />)
@@ -120,6 +119,7 @@ class FeedPage extends Component {
                 </Modal>
 
                 {this.renderItems(this.state.posts)}
+
             </div >
         )
     }

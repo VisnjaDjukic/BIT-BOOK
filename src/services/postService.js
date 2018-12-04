@@ -83,7 +83,7 @@ const fetchPosts = () => {
             return posts;
         });
 }
-// }
+
 
 const postData = (value, postType) => {
     let url = BITBOOK_API_BASE_URL;
@@ -116,4 +116,4 @@ const postData = (value, postType) => {
 }
 
 export { fetchSinglePost, fetchPosts, postData };
-// export { fetchPosts }
+
