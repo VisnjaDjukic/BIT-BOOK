@@ -24,7 +24,7 @@ class ModalPostImage extends Component {
         }
     }
 
-    onSubmitClick = (e) => {
+    onSubmitClick = (event) => {
         this.props.handleSubmit(this.state.dataInput)
     }
 

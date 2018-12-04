@@ -1,7 +1,4 @@
-import React, { Component } from 'react';
-import Modal from 'react-modal';
-
-import { postData } from "../../../services/postService"
+import React, { Component, Fragment } from 'react';
 
 class ModalPostVideo extends Component {
 
@@ -10,7 +7,6 @@ class ModalPostVideo extends Component {
         this.state = {
             dataInput: "",
             error: ""
-            // postType:"text",
         }
     }
     handleInput = (event) => {
@@ -29,30 +25,21 @@ class ModalPostVideo extends Component {
         }
     }
 
-    handleSubmit = () => {
-        postData(this.state.dataInput, "videoUrl")
-            .then((response) => {
-                if (response === true) {
-                    this.props.updatePosts();
-                }
-            })
+    onSubmitClick = (event) => {
+        this.props.handleSubmit(this.state.dataInput)
     }
 
     render() {
         return (
-            <Modal
-                isOpen={this.props.videoPost}
-                contentLabel="Post new VideoPost" center>
-
+            <Fragment>
                 <h4>New Video Post </h4>
-
                 <input placeholder="Input text..." type="text" onChange={this.handleInput} className="validate" />
                 <p>{this.state.error}</p>
                 <div>
                     <button onClick={this.props.closeModal} className="btn orange" >Cancel</button>
-                    <button onClick={this.handleSubmit} className="btn orange" >Post</button>
+                    <button onClick={this.onSubmitClick} className="btn orange" >Post</button>
                 </div>
-            </Modal>
+            </Fragment>
         );
     }
 }

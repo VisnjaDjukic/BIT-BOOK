@@ -27,8 +27,8 @@ class NewPost extends Component {
                     this.state.showButtons
                         ? (
                             <div>
-                                <a className="btn-floating btn-large waves-effect waves-light red btn" onClick={() => onPostTypeSelected('video')}> <i className="material-icons">videocam</i></a>
-                                <a className="btn-floating btn-large waves-effect waves-light green" onClick={() => onPostTypeSelected('image')}><i className="material-icons">image</i></a>
+                                <a className="btn-floating btn-large waves-effect waves-light red btn" onClick={() => onPostTypeSelected('videoUrl')}> <i className="material-icons">videocam</i></a>
+                                <a className="btn-floating btn-large waves-effect waves-light green" onClick={() => onPostTypeSelected('imageUrl')}><i className="material-icons">image</i></a>
                                 <a className="btn-floating btn-large waves-effect waves-light blue" onClick={() => onPostTypeSelected('text')}><i className="material-icons">edit</i></a>
                             </div>
                         ) : null

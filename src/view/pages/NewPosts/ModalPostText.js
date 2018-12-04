@@ -1,7 +1,4 @@
-import React, { Component } from 'react';
-import Modal from 'react-modal';
-
-import { postData } from "../../../services/postService"
+import React, { Component, Fragment } from 'react';
 
 class ModalPostText extends Component {
 
@@ -9,7 +6,6 @@ class ModalPostText extends Component {
         super(props);
         this.state = {
             dataInput: ""
-            // postType:"text",
         }
     }
 
@@ -19,30 +15,20 @@ class ModalPostText extends Component {
         })
     }
 
-    handleSubmit = () => {
-        postData(this.state.dataInput, "text")
-            .then((response) => {
-                if (response === true) {
-                    this.props.updatePosts();
-                }
-            })
+    onSubmitClick = (event) => {
+        this.props.handleSubmit(this.state.dataInput)
     }
 
     render() {
         return (
-            <Modal
-                isOpen={this.props.textPost}
-                contentLabel="Post new TextPost" center>
-
+            <Fragment>
                 <h4>New Text Post </h4>
-
                 <input placeholder="Input text..." type="text" onChange={this.handleInput} className="validate" />
-
                 <div>
                     <button onClick={this.props.closeModal} className="btn orange" >Cancel</button>
-                    <button onClick={this.handleSubmit} className="btn orange" >Post</button>
+                    <button onClick={this.onSubmitClick} className="btn orange" >Post</button>
                 </div>
-            </Modal>
+            </Fragment>
         );
     }
 }

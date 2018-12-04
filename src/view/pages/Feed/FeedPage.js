@@ -60,22 +60,13 @@ class FeedPage extends Component {
         this.setState({ postType: type, isModalOpen: true });
     }
 
-    // handleSubmit = (value) => {
-    //     postService.postData(value, this.state.postType)
-    //         .then((response) => {
-    //             if (response === true) {
-    //                 this.updatePosts();
-    //             }
-    //         })
-    // }
-
     renderCreationPostForm = () => {
-        if (this.state.postType === 'image') {
-            return <ModalPostImage />;
-        } else if (this.state.postType === 'video') {
-            return <ModalPostVideo />;
+        if (this.state.postType === 'imageUrl') {
+            return <ModalPostImage closeModal={this.closeModal} handleSubmit={this.handleSubmit} />;
+        } else if (this.state.postType === 'videoUrl') {
+            return <ModalPostVideo closeModal={this.closeModal} handleSubmit={this.handleSubmit} />;
         } else {
-            return <ModalPostText />;
+            return <ModalPostText closeModal={this.closeModal} handleSubmit={this.handleSubmit} />;
         }
     }
 
@@ -86,6 +77,7 @@ class FeedPage extends Component {
                     this.updatePosts();
                 }
             })
+        this.setState({ postType: "", isModalOpen: false });
     }
 
     render() {
