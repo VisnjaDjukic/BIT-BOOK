@@ -32,8 +32,7 @@ class MyUserProfile extends Component {
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col s12 m4">
-                        <div className="card">
+                                           <div className="card">
                             <div className="card-image">
                                 {!avatarUrl ?
                                     <div id="profileImg" style={{ backgroundImage: `url(${urlImg})` }}></div> :
@@ -48,8 +47,7 @@ class MyUserProfile extends Component {
                                 <span><p>Comments Count: {commentsCount}</p></span>
                             </div>
                         </div>
-                    </div>
-                </div>
+                                    </div>
             </div>
         )
     }

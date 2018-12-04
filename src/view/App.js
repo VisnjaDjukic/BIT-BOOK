@@ -9,7 +9,8 @@ import { ImagePost } from './pages/Feed/ImagePost';
 import { VideoPost } from './pages/Feed/VideoPost';
 import { TextPost } from './pages/Feed/TextPost';
 import { MyUserProfile } from './pages/Profile/MyUserProfile';
-import { PeoplePage } from './pages/People/PeoplePage';
+
+import { PeoplePage } from './pages/PeoplePage/PeoplePage';
 
 import { PostPage } from './pages/PostPage/PostPage';
 

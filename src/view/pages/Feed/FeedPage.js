@@ -36,9 +36,9 @@ class FeedPage extends Component {
     }
 
 
-    loadPosts() {
-        postsService.fetchPosts()
-
+    loadPosts=() =>{
+        postService.fetchPosts()
+    }
 
     fetchPosts = () => {
         postService.fetchPosts()
@@ -50,7 +50,7 @@ class FeedPage extends Component {
 
     componentDidMount() {
         this.loadPosts();
-      this.fetchPosts();
+        this.fetchPosts();
     }
 
     renderItems = (posts) => {
