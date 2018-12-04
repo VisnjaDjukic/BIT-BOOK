@@ -29,17 +29,15 @@ class MyUserProfile extends Component {
 
         const { name, aboutShort, avatarUrl, postsCount, commentsCount } = this.state.profile;
         const urlImg = "https://via.placeholder.com/150"
-
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col s12">
+                    <div className="col s12 m4">
                         <div className="card">
                             <div className="card-image">
                                 {!avatarUrl ?
-                                    <div className="profileImg" style={{ backgroundImage: `url(${urlImg})` }}></div> :
-                                    <div className="profileImg" style={{ backgroundImage: `url(${avatarUrl})` }}></div>
-                                }
+                                    <div id="profileImg" style={{ backgroundImage: `url(${urlImg})` }}></div> :
+                                    <div id="profileImg" style={{ backgroundImage: `url(${avatarUrl})` }}></div>}
                             </div>
                             <div className="card-content">
                                 <span className="card-title">{name}</span>

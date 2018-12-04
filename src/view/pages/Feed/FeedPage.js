@@ -5,13 +5,24 @@ import * as postService from '../../../services/postService';
 
 
 import { PostItem } from './postItem/PostItem';
+
 import { NewPost } from '../NewPosts/NewPost';
+
 
 import { ModalPostText } from '../NewPosts/ModalPostText'
 import { ModalPostImage } from '../NewPosts/ModalPostImage'
 import { ModalPostVideo } from '../NewPosts/ModalPostVideo'
 
-
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    }
+};
 
 class FeedPage extends Component {
     constructor(props) {
@@ -24,15 +35,22 @@ class FeedPage extends Component {
         }
     }
 
-    componentDidMount() {
-        this.fetchPosts();
-    }
+
+    loadPosts() {
+        postsService.fetchPosts()
+
 
     fetchPosts = () => {
         postService.fetchPosts()
-            .then(myPosts => {
+       .then(myPosts => {
                 this.setState({ posts: myPosts })
             })
+
+    }
+
+    componentDidMount() {
+        this.loadPosts();
+      this.fetchPosts();
     }
 
     renderItems = (posts) => {
@@ -87,17 +105,26 @@ class FeedPage extends Component {
 
         return (
             <div className="container">
+
+
+                {
+                    posts.map(post =>
+                        <PostItem key={post.id} post={post} />)
+                }
+
                 <NewPost
                     onPostTypeSelected={this.showPostForm} />
 
                 <Modal
                     isOpen={this.state.isModalOpen}
+                    style={customStyles}
                     contentLabel="Post new Post" center>
 
                     {this.renderCreationPostForm()}
                 </Modal>
 
                 {this.renderItems(this.state.posts)}
+
             </div >
         )
     }
