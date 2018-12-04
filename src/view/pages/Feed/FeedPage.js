@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 
 import * as postService from '../../../services/postService';
 
+
 import { PostItem } from './postItem/PostItem';
 import { NewPost } from '../NewPosts/NewPost';
 
@@ -11,10 +12,11 @@ import { ModalPostImage } from '../NewPosts/ModalPostImage'
 import { ModalPostVideo } from '../NewPosts/ModalPostVideo'
 
 
-class FeedPage extends Component {
 
+class FeedPage extends Component {
     constructor(props) {
         super(props)
+
         this.state = {
             isModalOpen: false,
             postType: '',
@@ -81,6 +83,8 @@ class FeedPage extends Component {
     }
 
     render() {
+        const { posts } = this.state;
+
         return (
             <div className="container">
                 <NewPost
