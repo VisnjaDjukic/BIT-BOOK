@@ -4,7 +4,15 @@ import { Header } from './common/Header';
 import { Footer } from './common/Footer';
 import { FeedPage } from './pages/Feed/FeedPage';
 import { Route, Switch } from 'react-router-dom';
+
+import { ImagePost } from './pages/Feed/ImagePost';
+import { VideoPost } from './pages/Feed/VideoPost';
+import { TextPost } from './pages/Feed/TextPost';
+import { MyUserProfile } from './pages/Profile/MyUserProfile';
+import { PeoplePage } from './pages/People/PeoplePage';
+
 import { PostPage } from './pages/PostPage/PostPage';
+
 
 
 class App extends Component {
@@ -14,8 +22,17 @@ class App extends Component {
         <Header />
         <main>
           <Switch>
+
+            < Route exact path="/profile" component={MyUserProfile} />
+            < Route exact path="/people" component={PeoplePage} />
+            < Route exact path="/imagePost" component={ImagePost} />
+            < Route exact path="/videoPost" component={VideoPost} />
+            < Route exact path="/textPost" component={TextPost} />
+            < Route exact path="/" component={FeedPage} />
+
             <Route exact path="/posts/:postType/:postId" component={PostPage} />
             <Route exact path="/" component={FeedPage} />
+
             {/* <p> Nothing in feed... </p> */}
           </Switch>
         </main>
