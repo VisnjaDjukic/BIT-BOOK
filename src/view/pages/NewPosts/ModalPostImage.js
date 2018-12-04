@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-
-import { postData } from "../../../services/postService"
+import React, { Component, Fragment } from 'react';
 
 class ModalPostImage extends Component {
 
@@ -26,27 +24,19 @@ class ModalPostImage extends Component {
         }
     }
 
-    handleSubmit = () => {
-        postData(this.state.dataInput, "imageUrl")
-            .then((response) => {
-                if (response === true) {
-                    this.props.updatePosts();
-                }
-            })
+    someFn = () => {
+        const value = this.state.dataInput
+        this.props.callbackFromParent(value);
     }
 
     render() {
         return (
-            <>
+            <Fragment>
                 <h4>New Image Post</h4>
 
                 <input placeholder="Input text..." type="text" onChange={this.handleInput} className="validate" />
                 <p>{this.state.error}</p>
-                <div>
-                    <button onClick={this.props.closeModal} className="btn orange" >Cancel</button>
-                    <button onClick={this.closeModal} className="btn orange" >Post</button>
-                </div>
-            </>
+            </Fragment>
         );
     }
 }
