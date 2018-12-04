@@ -1,0 +1,8 @@
+#profileImg{
+    border-radius: 50%;
+    margin:0 auto;
+    width: 30%;
+    padding-bottom: 30%;
+    background-position: center center;
+    background-size: cover;
+}
