@@ -14,7 +14,10 @@ class CommentList extends Component {
     }
 
     componentDidMount() {
+        this.loadComments()
+    }
 
+    loadComments() {
         const { postId } = this.props;
 
         commentService.fetchComments(postId)
@@ -22,13 +25,21 @@ class CommentList extends Component {
                 // console.log(myComments)
                 this.setState({ comments: myComments })
             })
-        commentService.createComment({
-            "body": this.state,
-            "postId": this.state
-        })
-            .then(commentInfo => {
+    }
 
-                this.setState({ newComment: commentInfo })
+    submitComment = (commentText) => {
+        const { postId } = this.props;
+
+        const body = {
+            "body": commentText,
+            "postId": postId
+        }
+
+        console.log("body", body);
+
+        commentService.createComment(body)
+            .then(() => {
+                this.loadComments()
             })
     }
 
@@ -40,7 +51,8 @@ class CommentList extends Component {
         if (!comments.length) {
             const isComment = "No comment";
             return (
-                <Fragment> <CommentInput />
+                <Fragment>
+                    <CommentInput onSubmit={this.submitComment} />
                     <div className="row">
                         <div className="col s12 m12" >
                             <div className="card" >
@@ -56,13 +68,13 @@ class CommentList extends Component {
             )
         } else {
 
-            const commentsList = comments.map(comment => {
-                return <CommentItem comment={comment} />
+            const commentsList = comments.map((comment, id) => {
+                return <CommentItem key={id} comment={comment} />
             })
             return (
 
                 <Fragment>
-                    <CommentInput />
+                    <CommentInput onSubmit={this.submitComment} />
                     {commentsList}
                 </Fragment>
             )

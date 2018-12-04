@@ -20,6 +20,8 @@ const fetchComments = (id) => {
             // console.log(commentsListData);
             return commentsListData.map(({ body, id, authorName }) => {
                 return new Comment(body, id, authorName);
+            }).sort((prev, next) => {
+                return next.id - prev.id
             })
         })
 }
@@ -38,8 +40,9 @@ const createComment = (body) => {
         body: JSON.stringify(body)
     })
         .then(response => response.json())
-        .then(commentData => {
-            return commentData
+        .then(data => {
+            console.log(data);
+            return data
         })
 }
 

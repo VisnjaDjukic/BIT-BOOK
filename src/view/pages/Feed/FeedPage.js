@@ -4,6 +4,7 @@ import * as postsService from '../../../services/postService';
 
 
 import { PostItem } from './postItem/PostItem';
+import { CommentInput } from '../PostPage/CommentInput';
 
 
 class FeedPage extends Component {
@@ -15,11 +16,16 @@ class FeedPage extends Component {
         }
     }
 
-    componentDidMount() {
+    loadPosts() {
         postsService.fetchPosts()
             .then(myPosts => {
                 this.setState({ posts: myPosts })
             })
+
+    }
+
+    componentDidMount() {
+        this.loadPosts()
     }
 
     render() {
@@ -27,6 +33,7 @@ class FeedPage extends Component {
 
         return (
             <div className="container">
+
                 {
                     posts.map(post =>
                         <PostItem key={post.id} post={post} />)
