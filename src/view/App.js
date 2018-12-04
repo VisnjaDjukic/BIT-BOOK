@@ -9,6 +9,7 @@ import { ImagePost } from './pages/Feed/ImagePost';
 import { VideoPost } from './pages/Feed/VideoPost';
 import { TextPost } from './pages/Feed/TextPost';
 import { MyUserProfile } from './pages/Profile/MyUserProfile';
+import { PeoplePage } from './pages/PeoplePage/PeoplePage';
 
 import { PostPage } from './pages/PostPage/PostPage';
 
@@ -23,6 +24,7 @@ class App extends Component {
           <Switch>
 
             < Route exact path="/profile" component={MyUserProfile} />
+            < Route exact path="/people" component={PeoplePage} />
             < Route exact path="/imagePost" component={ImagePost} />
             < Route exact path="/videoPost" component={VideoPost} />
             < Route exact path="/textPost" component={TextPost} />
