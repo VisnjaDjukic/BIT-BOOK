@@ -17,10 +17,34 @@ const fetchComments = (id) => {
     })
         .then(response => response.json())
         .then(commentsListData => {
-            console.log(commentsListData);
-            return commentsListData.map(({ body, id, authorName}) => {
+            // console.log(commentsListData);
+            return commentsListData.map(({ body, id, authorName }) => {
                 return new Comment(body, id, authorName);
+            }).sort((prev, next) => {
+                return next.id - prev.id
             })
         })
 }
-export { fetchComments }
+
+const createComment = (body) => {
+
+    const commentsUrl = BITBOOK_API_BASE_URL + "/comments";
+
+    return fetch(commentsUrl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Key": "bitbookdev",
+            "SessionId": "2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE"
+        },
+        body: JSON.stringify(body)
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            return data
+        })
+}
+
+
+export { fetchComments, createComment }

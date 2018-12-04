@@ -44,7 +44,9 @@ const fetchSinglePost = (postId, type) => {
         })
 }
 
+
 const fetchPosts = () => {
+
     const post = "/posts"
     const url = BITBOOK_API_BASE_URL + `${post}`;
 
@@ -83,7 +85,7 @@ const fetchPosts = () => {
             return posts;
         });
 }
-// }
+
 
 const postData = (value, postType) => {
     let url = BITBOOK_API_BASE_URL;
@@ -116,4 +118,4 @@ const postData = (value, postType) => {
 }
 
 export { fetchSinglePost, fetchPosts, postData };
-// export { fetchPosts }
+
