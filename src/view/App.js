@@ -11,8 +11,6 @@ import { PeoplePage } from './pages/PeoplePage/PeoplePage';
 
 import { PostPage } from './pages/PostPage/PostPage';
 
-
-
 class App extends Component {
   render() {
     return (

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Modal from 'react-modal';
 
 import * as postService from '../../../services/postService';
@@ -8,6 +8,7 @@ import { PostItem } from './postItem/PostItem';
 
 import { NewPost } from '../NewPosts/NewPost';
 
+import { DropDown } from './dropDown/DropDown';
 
 import { ModalPostText } from '../NewPosts/ModalPostText'
 import { ModalPostImage } from '../NewPosts/ModalPostImage'
@@ -55,8 +56,9 @@ class FeedPage extends Component {
 
         this.loadPosts()
         this.fetchPosts()
-
     }
+
+
 
     renderItems = (posts) => {
         const postItems = posts.map((post, index) => {
@@ -105,18 +107,20 @@ class FeedPage extends Component {
         this.setState({ postType: "", isModalOpen: false });
     }
 
+
     render() {
         const { posts } = this.state;
 
         return (
+
             <div className="container">
 
 
+                <DropDown />
                 {
                     posts.map(post =>
                         <PostItem key={post.id} post={post} />)
                 }
-
                 <NewPost
                     onPostTypeSelected={this.showPostForm} />
 
