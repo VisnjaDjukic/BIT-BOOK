@@ -12,9 +12,11 @@ import { NewPost } from '../NewPosts/NewPost';
 import { ModalPostText } from '../NewPosts/ModalPostText'
 import { ModalPostImage } from '../NewPosts/ModalPostImage'
 import { ModalPostVideo } from '../NewPosts/ModalPostVideo'
+import "./FeedPage.css"
 
 const customStyles = {
     content: {
+        width: '500px',
         top: '50%',
         left: '50%',
         right: 'auto',
@@ -36,13 +38,13 @@ class FeedPage extends Component {
     }
 
 
-    loadPosts=() =>{
+    loadPosts = () => {
         postService.fetchPosts()
     }
 
     fetchPosts = () => {
         postService.fetchPosts()
-       .then(myPosts => {
+            .then(myPosts => {
                 this.setState({ posts: myPosts })
             })
 

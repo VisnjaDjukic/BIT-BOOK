@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
+
 class ModalPostText extends Component {
 
     constructor(props) {
