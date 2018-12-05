@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
+
 class ModalPostImage extends Component {
 
     constructor(props) {
@@ -36,8 +37,8 @@ class ModalPostImage extends Component {
                 <input placeholder="Input text..." type="text" onChange={this.handleInput} className="validate" />
                 <p>{this.state.error}</p>
                 <div>
-                    <button onClick={this.props.closeModal} className="btn orange" >Cancel</button>
                     <button onClick={this.onSubmitClick} className="btn orange" >Post</button>
+                    <button onClick={this.props.closeModal} className="btn orange" >Cancel</button>
                 </div>
             </Fragment>
         );

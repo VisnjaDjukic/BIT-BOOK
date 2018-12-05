@@ -12,9 +12,11 @@ import { NewPost } from '../NewPosts/NewPost';
 import { ModalPostText } from '../NewPosts/ModalPostText'
 import { ModalPostImage } from '../NewPosts/ModalPostImage'
 import { ModalPostVideo } from '../NewPosts/ModalPostVideo'
+import "./FeedPage.css"
 
 const customStyles = {
     content: {
+        width: '500px',
         top: '50%',
         left: '50%',
         right: 'auto',
