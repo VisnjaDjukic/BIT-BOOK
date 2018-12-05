@@ -8,26 +8,40 @@ class MyUserProfile extends Component {
         super(props)
 
         this.state = {
-            profile: null
+            profile: null,
+            userId: null
         }
     }
 
+   
     componentDidMount() {
         userService.fetchMyProfile()
             .then(myProfile => {
                 this.setState({
                     profile: myProfile,
+                    userId: myProfile.userId
                 })
                 console.log("profile", myProfile)
             })
+            
     }
+    componentDidUpdate() {
+        this.localStorage()
+    }
+
+
+    localStorage = ()=>{
+        localStorage.setItem('userId', this.state.userId)
+   }
+    
+
     render() {
 
         if (!this.state.profile) {
             return <h1>Loading...</h1>
         }
 
-        const { name, aboutShort, avatarUrl, postsCount, commentsCount } = this.state.profile;
+        const {userId, name, aboutShort, avatarUrl, postsCount, commentsCount } = this.state.profile;
         const urlImg = "https://via.placeholder.com/150"
         return (
             <div className="container">

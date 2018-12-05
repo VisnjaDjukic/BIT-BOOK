@@ -5,6 +5,7 @@ import * as postService from '../../../services/postService';
 import { ImagePost } from '../Feed/ImagePost';
 import { VideoPost } from '../Feed/VideoPost';
 import { TextPost } from '../Feed/TextPost';
+import {DeletePost} from './DeletePost'
 
 class PostPage extends Component {
     constructor(props) {
@@ -12,7 +13,9 @@ class PostPage extends Component {
 
         this.state = {
             post: null,
-            comments: []
+            comments: [],
+            postId: this.props.match.params.postId,
+            postUserId: null
         }
     }
 
@@ -26,7 +29,8 @@ class PostPage extends Component {
         postService.fetchSinglePost(postId, postType)
             .then(post => {
                 this.setState({
-                    post
+                    post,
+                    postUserId: post.userId,
                 })
             })
     }
@@ -51,6 +55,9 @@ class PostPage extends Component {
         return (
             <div className="container">
                 {this.renderPost(post)}
+
+            {(parseInt(localStorage.getItem('userId')) === this.state.postUserId)? <DeletePost id={this.state.postId}/> : null}
+               
                 <CommentList postId={post.id} />
             </div>
         )
