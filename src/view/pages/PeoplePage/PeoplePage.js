@@ -15,12 +15,21 @@ class PeoplePage extends Component {
     }
 
     componentDidMount() {
+
+
         userService.fetchUsers()
             .then(userList => {
                 this.setState({
                     users: userList,
                 })
                 console.log("users", userList)
+            })
+    }
+
+    fetchSingleUser = (userId) => {
+        userService.fetchSingleUser(userId)
+            .then(user => {
+                console.log("myUser", user)
             })
     }
 

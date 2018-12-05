@@ -19,7 +19,7 @@ const fetchUsers = () => {
         .then((userData) => {
             // console.log(userData)
             const usersList = userData.map(user => {
-                return new User(user.userId, user.name, user.aboutShort, user.lastPostDate, user.avatarUrl)
+                return new User(user.id, user.name, user.aboutShort, user.lastPostDate, user.avatarUrl)
             })
             return usersList;
 
@@ -62,8 +62,8 @@ const fetchSingleUser = (userId) => {
         .then(response => response.json())
         .then(user => {
             console.log("myUser", user);
-            // const { userId, name, aboutShort, avatarUrl, postsCount, commentsCount } = user;
-            // return new User(userId, name, aboutShort, null, avatarUrl, postsCount, commentsCount)
+            const { userId, name, aboutShort, avatarUrl, postsCount, commentsCount } = user;
+            return new User(userId, name, aboutShort, null, avatarUrl, postsCount, commentsCount)
         })
 }
 
