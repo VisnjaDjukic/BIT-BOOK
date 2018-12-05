@@ -22,10 +22,10 @@ class CommentInput extends React.Component {
 
     onSubmitHandler = (event) => {
         event.preventDefault()
-
         // submit comment
         const commentText = this.state.textInput
         this.props.onSubmit(commentText)
+        this.setState({ textInput: "" })
     }
 
     render() {
