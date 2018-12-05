@@ -10,8 +10,7 @@ class MyUserProfile extends Component {
         super(props)
 
         this.state = {
-            profile: null,
-            user: []
+            profile: {},
         }
     }
 
