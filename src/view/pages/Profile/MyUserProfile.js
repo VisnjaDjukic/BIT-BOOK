@@ -11,9 +11,11 @@ class MyUserProfile extends Component {
 
         this.state = {
             profile: {},
+            userId: null
         }
     }
 
+   
     componentDidMount() {
         const userId = this.props.match.params.id;
 
@@ -29,9 +31,20 @@ class MyUserProfile extends Component {
             .then(myProfile => {
                 this.setState({
                     profile: myProfile,
+                    userId: myProfile.userId
                 })
             })
+            
     }
+    componentDidUpdate() {
+        this.localStorage()
+    }
+
+
+    localStorage = ()=>{
+        localStorage.setItem('userId', this.state.userId)
+   }
+    
 
     loadSingleUserProfile(userId) {
         userService.fetchSingleUser(userId)
@@ -46,6 +59,8 @@ class MyUserProfile extends Component {
             return <h1>Loading...</h1>
         }
 
+        const {userId, name, aboutShort, avatarUrl, postsCount, commentsCount } = this.state.profile;
+        const urlImg = "https://via.placeholder.com/150"
         return (
 
             <UserProfile userId={this.state.profile.userId}
