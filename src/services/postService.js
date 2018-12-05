@@ -96,7 +96,6 @@ const postData = (value, postType) => {
         data = { imageUrl: value };
     } else if (postType === 'videoUrl') {
         url += '/VideoPosts';
-        console.log(value)
         data = { videoUrl: value };
     } else {
         url += '/TextPosts';

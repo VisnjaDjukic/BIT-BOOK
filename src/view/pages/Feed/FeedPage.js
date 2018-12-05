@@ -42,6 +42,7 @@ class FeedPage extends Component {
         postService.fetchPosts()
     }
 
+
     fetchPosts = () => {
         postService.fetchPosts()
             .then(myPosts => {
@@ -51,8 +52,10 @@ class FeedPage extends Component {
     }
 
     componentDidMount() {
-        this.loadPosts();
-        this.fetchPosts();
+
+        this.loadPosts()
+        this.fetchPosts()
+
     }
 
     renderItems = (posts) => {
