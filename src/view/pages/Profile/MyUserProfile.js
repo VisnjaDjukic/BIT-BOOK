@@ -47,7 +47,10 @@ class MyUserProfile extends Component {
         }
 
         return (
+
             <UserProfile name={this.state.profile.name} aboutShort={this.state.profile.aboutShort} avatarUrl={this.state.profile.avatarUrl} postsCount={this.state.profile.postsCount} commentsCount={this.state.profile.commentsCount} />
+
+
         )
     }
 }

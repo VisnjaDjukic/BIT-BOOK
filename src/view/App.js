@@ -6,7 +6,8 @@ import { FeedPage } from './pages/Feed/FeedPage';
 import { Route, Switch } from 'react-router-dom';
 
 import { MyUserProfile } from './pages/Profile/MyUserProfile';
-import { PeoplePage } from './pages/People/PeoplePage';
+
+import { PeoplePage } from './pages/PeoplePage/PeoplePage';
 
 import { PostPage } from './pages/PostPage/PostPage';
 
