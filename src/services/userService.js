@@ -67,10 +67,30 @@ const fetchSingleUser = (userId) => {
         })
 }
 
+const editProfile = (data) => {
+    const profile = "/Profiles";
+    const urlProfile = BITBOOK_API_BASE_URL + profile;
 
+    return fetch(urlProfile, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Key": "bitbookdev",
+            "SessionId": "2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE"
+        },
+        body: JSON.stringify(data)
+    }
+    ).then(response => response.json())
+        .then(data => {
+            console.log(data)
+            return (data)
+        })
+
+}
 
 export {
     fetchSingleUser,
     fetchUsers,
-    fetchMyProfile
+    fetchMyProfile,
+    editProfile
 }

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import * as userService from "../../../services/userService"
 import "./MyUserProfile.css"
 import { UserProfile } from './UserProfile'
-// import { ModalPostVideo } from '../NewPosts/ModalPostVideo';
+import { EditProfile } from './EditProfile';
 
 class MyUserProfile extends Component {
 
@@ -11,10 +11,18 @@ class MyUserProfile extends Component {
 
         this.state = {
             profile: {},
+            name: "",
+            email: "",
+            aboutShort: "",
+            about: "",
+            avatarUrl: ""
         }
-    }
+    };
+
 
     componentDidMount() {
+        this.loadEditInput()
+        this.submitInput()
         const userId = this.props.match.params.id;
 
         if (userId) {
@@ -40,6 +48,43 @@ class MyUserProfile extends Component {
             })
     }
 
+    // editProfile(data) {
+    //     userService.editProfile(data)
+    //         .then(myResponse => {
+    //             console.log(myResponse)
+    //         })
+    // }
+
+    submitInput = () => {
+        const data = {
+            name: "",
+            email: "",
+            aboutShort: "",
+            about: "",
+            avatarUrl: ""
+        }
+        userService.editProfile(data)
+            .then((profile) => {
+                this.setState({
+                    name: profile.name,
+                    email: profile.email,
+                    aboutShort: profile.aboutShort,
+                    about: profile.about,
+                    avatarUrl: profile.avatarUrl
+                })
+
+                this.loadEditInput()
+            })
+    }
+
+    loadEditInput() {
+        userService.editProfile()
+            .then(data => {
+                console.log(data)
+                this.setState({})
+            })
+    }
+
     render() {
 
         if (!this.state.profile) {
@@ -47,14 +92,16 @@ class MyUserProfile extends Component {
         }
 
         return (
+            <Fragment>
+                <UserProfile userId={this.state.profile.userId}
+                    name={this.state.profile.name}
+                    aboutShort={this.state.profile.aboutShort}
+                    avatarUrl={this.state.profile.avatarUrl}
+                    postsCount={this.state.profile.postsCount}
+                    commentsCount={this.state.profile.commentsCount} />
 
-            <UserProfile userId={this.state.profile.userId}
-                name={this.state.profile.name}
-                aboutShort={this.state.profile.aboutShort}
-                avatarUrl={this.state.profile.avatarUrl}
-                postsCount={this.state.profile.postsCount}
-                commentsCount={this.state.profile.commentsCount} />
-
+                <EditProfile onSubmit={this.submitInput} />
+            </Fragment>
 
         )
     }
