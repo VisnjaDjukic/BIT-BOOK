@@ -34,7 +34,7 @@ class FeedPage extends Component {
         this.state = {
             isModalOpen: false,
             postType: '',
-            posts: [],
+            posts: []
         }
     }
 
@@ -88,6 +88,7 @@ class FeedPage extends Component {
     }
 
     renderCreationPostForm = () => {
+
         if (this.state.postType === 'imageUrl') {
             return <ModalPostImage closeModal={this.closeModal} handleSubmit={this.handleSubmit} />;
         } else if (this.state.postType === 'videoUrl') {
@@ -108,6 +109,17 @@ class FeedPage extends Component {
     }
 
 
+    showPostFilterByType = (type) => {
+        this.setState({ postType: type });
+        const postItemsFiltered = this.state.posts.filter(post =>
+            (post.type === this.state.postType) ? post.type : null)
+
+        console.log(postItemsFiltered)
+        this.renderItems(postItemsFiltered);
+    }
+
+
+
     render() {
         const { posts } = this.state;
 
@@ -116,11 +128,8 @@ class FeedPage extends Component {
             <div className="container">
 
 
-                <DropDown />
-                {
-                    posts.map(post =>
-                        <PostItem key={post.id} post={post} />)
-                }
+                <DropDown showPost={this.showPostFilterByType} />
+
                 <NewPost
                     onPostTypeSelected={this.showPostForm} />
 
@@ -132,7 +141,7 @@ class FeedPage extends Component {
                     {this.renderCreationPostForm()}
                 </Modal>
 
-                {this.renderItems(this.state.posts)}
+                {this.renderItems(posts)}
 
             </div >
         )

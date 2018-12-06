@@ -5,7 +5,7 @@ import * as postService from '../../../services/postService';
 import { ImagePost } from '../Feed/ImagePost';
 import { VideoPost } from '../Feed/VideoPost';
 import { TextPost } from '../Feed/TextPost';
-import {DeletePost} from './DeletePost'
+import { DeletePost } from './DeletePost'
 
 class PostPage extends Component {
     constructor(props) {
@@ -56,8 +56,8 @@ class PostPage extends Component {
             <div className="container">
                 {this.renderPost(post)}
 
-            {(parseInt(localStorage.getItem('userId')) === this.state.postUserId)? <DeletePost id={this.state.postId}/> : null}
-               
+                {(parseInt(localStorage.getItem('userId')) === this.state.postUserId) ? <DeletePost id={this.state.postId} /> : null}
+
                 <CommentList postId={post.id} />
             </div>
         )
