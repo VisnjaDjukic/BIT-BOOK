@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
-import { UpdateProfileModal } from './UpdateProfileModal';
+import { ProfileEditForm } from './ProfileEditForm';
 
 const customStyles = {
     content: {
@@ -19,48 +19,63 @@ Modal.setAppElement('#root');
 class EditProfile extends Component {
     constructor(props) {
         super(props)
+
         this.state = {
             modalIsOpen: false,
+            name: this.props.profile.name,
+            description: this.props.profile.aboutShort,
+            imageUrl: this.props.profile.avatarUrl,
         };
+
         this.openModal = this.openModal.bind(this);
-        this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.onUpdateClick = this.onUpdateClick.bind(this);
+    }
 
-
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            name: nextProps.profile.name,
+            description: nextProps.profile.aboutShort,
+            imageUrl: nextProps.profile.avatarUrl,
+        });
     }
 
     openModal() {
         this.setState({ modalIsOpen: true });
     }
 
-    afterOpenModal() {
-        this.subtitle.style.color = 'orange';
-    }
-
     closeModal() {
         this.setState({ modalIsOpen: false });
     }
 
-    // uploadPhoto = () => {
+    onUpdateClick() {
+        const { modalIsOpen, ...profile } = this.state;
+        console.log('profile from edit profile comp:', profile);
 
-    // }
+        this.props.onSubmit(profile)
+    }
+
     render() {
+        const { modalIsOpen, ...form } = this.state;
 
         return (
             <>
                 <div>
                     <Modal
-                        isOpen={this.state.modalIsOpen}
-                        onAfterOpen={this.afterOpenModal}
+                        isOpen={modalIsOpen}
                         onRequestClose={this.closeModal}
                         style={customStyles}
-                        contentLabel="Example Modal">
+                        contentLabel="Example Modal"
+                    >
 
-                        <h4 ref={subtitle => this.subtitle = subtitle}>Update Profile</h4>
+                        <h4>Update Profile</h4>
 
-                        <UpdateProfileModal />
-                        {/* <button onClick={this.closeModal} className="waves-effect waves-light btn">close</button> */}
-                        <button onSubmit={this.submitInput} className="btn orange" >Post</button>
+                        <ProfileEditForm
+                            onFormUpdate={updatedForm => this.setState(updatedForm)}
+                            form={form}
+                        />
+
+                        <button onClick={this.onUpdateClick} className="btn orange" >Update</button>
                         <button onClick={this.closeModal} className="btn orange" >Cancel</button>
                     </Modal>
                 </div>

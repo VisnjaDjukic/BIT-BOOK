@@ -11,12 +11,12 @@ class MyUserProfile extends Component {
 
         this.state = {
             profile: {},
-            name: "",
-            email: "",
-            aboutShort: "",
-            about: "",
-            avatarUrl: "",
-            userId: null
+            // name: "",
+            // email: "",
+            // aboutShort: "",
+            // about: "",
+            // avatarUrl: "",
+            // userId: null
         }
     };
 
@@ -61,26 +61,20 @@ class MyUserProfile extends Component {
             })
     }
 
-    // editProfile(data) {
-    //     userService.editProfile(data)
-    //         .then(myResponse => {
-    //             console.log(myResponse)
-    //         })
-    // }
+    submitInput = (profile) => {
+        console.log("profile obj pick inside:", profile);
 
-    submitInput = () => {
-        const data = {
-            name: "",
-            email: "",
-            aboutShort: "",
-            about: "",
-            avatarUrl: ""
-        }
-        userService.editProfile(data)
+        // const data = { ...profile }
+        // const data = {
+        //     name: "",
+        //     aboutShort: "",
+        //     about: "",
+        //     avatarUrl: ""
+        // }
+        userService.editProfile(profile)
             .then((profile) => {
                 this.setState({
                     name: profile.name,
-                    email: profile.email,
                     aboutShort: profile.aboutShort,
                     about: profile.about,
                     avatarUrl: profile.avatarUrl
@@ -115,7 +109,7 @@ class MyUserProfile extends Component {
                     commentsCount={commentsCount}
                 />
 
-                <EditProfile onSubmit={this.submitInput} />
+                <EditProfile profile={this.state.profile} onSubmit={this.submitInput} />
             </Fragment>
 
         )
