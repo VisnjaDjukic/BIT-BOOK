@@ -109,14 +109,15 @@ class FeedPage extends Component {
     }
 
 
-    showPostFilterByType = (type) => {
-        this.setState({ postType: type });
-        const postItemsFiltered = this.state.posts.filter(post =>
-            (post.type === this.state.postType) ? post.type : null)
+    // showPostFilterByType = (type) => {
+    //     this.setState({ postType: type });
 
-        console.log(postItemsFiltered)
-        this.renderItems(postItemsFiltered);
-    }
+    //     let postItemsFiltered = this.state.posts.filter((post, i) =>
+    //         (post[0].type === this.state.postType) ? post : null);
+
+    //     console.log(postItemsFiltered)
+    //     // this.renderItems(postItemsFiltered);
+    // }
 
 
 
