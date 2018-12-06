@@ -3,7 +3,7 @@ import "./MyUserProfile.css";
 
 
 const UserProfile = (props) => {
-    const { userId, name, aboutShort, avatarUrl, postsCount, commentsCount } = props;
+    const { name, aboutShort, avatarUrl, postsCount, commentsCount } = props;
 
     const urlImg = "https://via.placeholder.com/150";
 

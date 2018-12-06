@@ -116,5 +116,22 @@ const postData = (value, postType) => {
         })
 }
 
-export { fetchSinglePost, fetchPosts, postData };
+const deletePost = (postId) => {
+
+    const url = BITBOOK_API_BASE_URL + `/Posts/${postId}`;
+
+    return fetch(url, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Key": "bitbookdev",
+            "SessionId": "2990B489-DB94-4AC1-ACDE-CDC9CC3EAEAE"
+        }
+    })
+    .then(response => {
+        return null
+    })
+}
+
+export { fetchSinglePost, fetchPosts, postData, deletePost };
 

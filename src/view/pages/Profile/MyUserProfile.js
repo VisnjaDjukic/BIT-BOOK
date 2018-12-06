@@ -15,9 +15,11 @@ class MyUserProfile extends Component {
             email: "",
             aboutShort: "",
             about: "",
-            avatarUrl: ""
+            avatarUrl: "",
+            userId: null
         }
     };
+
 
 
     componentDidMount() {
@@ -37,9 +39,20 @@ class MyUserProfile extends Component {
             .then(myProfile => {
                 this.setState({
                     profile: myProfile,
+                    userId: myProfile.userId
                 })
             })
+
     }
+    componentDidUpdate() {
+        this.localStorage()
+    }
+
+
+    localStorage = () => {
+        localStorage.setItem('userId', this.state.userId)
+    }
+
 
     loadSingleUserProfile(userId) {
         userService.fetchSingleUser(userId)
@@ -91,14 +104,16 @@ class MyUserProfile extends Component {
             return <h1>Loading...</h1>
         }
 
+        const { name, aboutShort, avatarUrl, postsCount, commentsCount } = this.state.profile;
         return (
             <Fragment>
-                <UserProfile userId={this.state.profile.userId}
-                    name={this.state.profile.name}
-                    aboutShort={this.state.profile.aboutShort}
-                    avatarUrl={this.state.profile.avatarUrl}
-                    postsCount={this.state.profile.postsCount}
-                    commentsCount={this.state.profile.commentsCount} />
+                <UserProfile
+                    name={name}
+                    aboutShort={aboutShort}
+                    avatarUrl={avatarUrl}
+                    postsCount={postsCount}
+                    commentsCount={commentsCount}
+                />
 
                 <EditProfile onSubmit={this.submitInput} />
             </Fragment>

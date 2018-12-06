@@ -8,7 +8,7 @@ const TextPost = (props) => {
     return (
 
         <div className="card-content">
-            <p>{text}</p>
+           <p>{text}</p>
         </div>
     )
 }
